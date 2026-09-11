@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/lessons/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: LessonsIndex;
+  component: LessonsIndex,
 });
 
 function LessonsIndex() {
