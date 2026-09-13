@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute, Link, useServerFn } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 
 export const Route = createFileRoute("/_authenticated/coach")({
   validateSearch: (search: Record<string, unknown>) => ({
-    topic: typeof search.topic === "string" ? search.topic : undefined,
+    topic: typeof search["topic"] === "string" ? (search["topic"] as string) : undefined,
   }),
   head: () => ({
     meta: [

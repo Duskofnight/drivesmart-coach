@@ -48,8 +48,9 @@ function LessonsIndex() {
           return (
             <Link
               key={s.slug}
-              to={locked ? "/plan" : "/lessons/$slug"}
-              params={locked ? undefined : { slug: s.slug }}
+              {...(locked
+                ? { to: "/plan" as const }
+                : { to: "/lessons/$slug" as const, params: { slug: s.slug } })}
               className="group border-border bg-card hover:border-primary/60 relative overflow-hidden rounded-2xl border transition-colors"
             >
               <div className="relative aspect-16/10 overflow-hidden">

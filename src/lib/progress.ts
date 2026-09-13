@@ -115,7 +115,11 @@ export function useSavePractice(userId: string | undefined) {
 export function useSaveMockTest(userId: string | undefined) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async (input: { score: number; passed: boolean; mistakes: string[] }) => {
+    mutationFn: async (input: {
+      score: number;
+      passed: boolean;
+      mistakes: { scenario: string; fault: string }[];
+    }) => {
       const { error } = await supabase.from("mock_tests").insert({
         user_id: userId!,
         score: input.score,
@@ -130,6 +134,17 @@ export function useSaveMockTest(userId: string | undefined) {
 
 export function useProfile(userId: string | undefined) {
   return useQuery(profileQuery(userId));
+}
+
+export function useSetPlan(userId: string | undefined) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (plan: "free" | "premium") => {
+      const { error } = await supabase.from("profiles").update({ plan }).eq("id", userId!);
+      if (error) throw error;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["profile", userId] }),
+  });
 }
 
 /**

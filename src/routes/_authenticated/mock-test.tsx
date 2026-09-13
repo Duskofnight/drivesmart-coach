@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/mock-test")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: MockTest;
+  component: MockTest,
 });
 
 type Stage = { slug: string; title: string; prompt: string; options: string[]; answer: number; fault: string };
