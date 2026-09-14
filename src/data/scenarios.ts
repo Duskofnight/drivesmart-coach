@@ -10,6 +10,16 @@ import construction from "@/assets/scenario-construction.jpg";
 import railway from "@/assets/scenario-railway.jpg";
 import emergency from "@/assets/scenario-emergency.jpg";
 import parkingLot from "@/assets/scenario-parking-lot.jpg";
+import laneChange from "@/assets/scenario-lane-change.jpg";
+import rightTurnRed from "@/assets/scenario-right-turn-red.jpg";
+import crosswalk from "@/assets/scenario-crosswalk.jpg";
+import schoolBus from "@/assets/scenario-school-bus.jpg";
+import uncontrolled from "@/assets/scenario-uncontrolled.jpg";
+import threePoint from "@/assets/scenario-three-point.jpg";
+import nightDrive from "@/assets/scenario-night.jpg";
+import gravel from "@/assets/scenario-gravel.jpg";
+import driveway from "@/assets/scenario-driveway.jpg";
+import following from "@/assets/scenario-following.jpg";
 import fourWayClip from "@/assets/clip-four-way-stop.mp4.asset.json";
 
 export type Tier = "free" | "premium";
@@ -263,7 +273,7 @@ export const scenarios: Scenario[] = [
     title: "Parallel parking",
     subtitle: "Reference points that work every time",
     topic: "Parking",
-    tier: "premium",
+    tier: "free",
     minutes: 9,
     image: parallelPark,
     rule: "Park within 50 cm of the curb, parallel to it, and leave room for the vehicles ahead and behind. Signal before stopping and shoulder check before every direction change.",
@@ -313,7 +323,7 @@ export const scenarios: Scenario[] = [
     title: "Merging onto the highway",
     subtitle: "Speed matching and the shoulder check that saves you",
     topic: "Highway driving",
-    tier: "premium",
+    tier: "free",
     minutes: 8,
     image: highwayMerge,
     rule: "Use the acceleration lane to reach the speed of traffic, signal, shoulder check your blind spot, and merge into a gap. Merging traffic yields to traffic already on the highway.",
@@ -418,7 +428,7 @@ export const scenarios: Scenario[] = [
     title: "Winter driving in Alberta",
     subtitle: "Space, smoothness, and reading black ice",
     topic: "Conditions",
-    tier: "premium",
+    tier: "free",
     minutes: 8,
     image: winter,
     rule: "You must drive at a speed that is safe for conditions, even if that is well below the posted limit. Clear all snow and ice off the vehicle before driving, and increase following distance on slippery roads.",
@@ -676,6 +686,546 @@ export const scenarios: Scenario[] = [
       ],
       answer: 2,
       why: "A full 360-degree check. Cameras and mirrors have blind spots exactly where small children and cyclists are.",
+    },
+  },
+  {
+    slug: "lane-changes",
+    title: "Lane changes and blind spots",
+    subtitle: "Mirror, signal, shoulder check — in that order",
+    topic: "City driving",
+    tier: "free",
+    minutes: 6,
+    image: laneChange,
+    rule: "Signal your intention, check mirrors and your blind spot, and change lanes only when there is a safe gap. You must not change lanes across a solid line or inside an intersection.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — changing lanes",
+    steps: [
+      {
+        say: "Decide early. A lane change planned three blocks out is smooth; one planned three metres out is a fault.",
+        watch: "Planning ahead instead of reacting to your turn.",
+        focus: { x: 50, y: 44, label: "Road ahead" },
+      },
+      {
+        say: "Mirror first — centre, then the side mirror on the side you're moving to.",
+        watch: "Mirror use before the signal, not after.",
+        focus: { x: 22, y: 48, label: "Side mirror" },
+      },
+      {
+        say: "Signal for at least three flashes so drivers around you can react.",
+        watch: "Signal on early and left on through the move.",
+        focus: { x: 62, y: 88, label: "Signal stalk" },
+      },
+      {
+        say: "Now the shoulder check. That silver SUV sits exactly where mirrors hide a car.",
+        watch: "A real head turn — mirrors alone is scored as no blind-spot check.",
+        focus: { x: 18, y: 55, label: "Blind spot" },
+      },
+      {
+        say: "Move over in one smooth line, keep your speed, cancel the signal, then rebuild your gap.",
+        watch: "One steady movement, speed unchanged, signal cancelled.",
+        focus: { x: 46, y: 62, label: "New lane" },
+      },
+    ],
+    faults: [
+      "No shoulder check before crossing the line",
+      "Signalling after starting to move",
+      "Drifting across two lanes in one move",
+      "Slowing down in the middle of the change",
+    ],
+    quiz: {
+      question: "What is the correct order for a lane change?",
+      options: [
+        "Signal, move, then check",
+        "Mirror, signal, shoulder check, move",
+        "Shoulder check, move, signal",
+        "Mirror, move, signal",
+      ],
+      answer: 1,
+      why: "Mirror, signal, blind-spot shoulder check, then move. Skipping the shoulder check is one of the most common road-test faults.",
+    },
+  },
+  {
+    slug: "right-turn-on-red",
+    title: "Right turn on a red light",
+    subtitle: "Legal in Alberta — but only after a full stop",
+    topic: "Intersections",
+    tier: "free",
+    minutes: 5,
+    image: rightTurnRed,
+    rule: "In Alberta you may turn right on a red light after coming to a complete stop, unless a sign prohibits it. You must yield to pedestrians and to all traffic.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — turning on a red light",
+    steps: [
+      {
+        say: "Come to a complete stop behind the line first. The turn is only legal after a real stop.",
+        watch: "Full stop before the crosswalk, wheels stopped.",
+        focus: { x: 50, y: 76, label: "Stop line" },
+      },
+      {
+        say: "Look for a 'no right turn on red' sign. If it's there, you wait for green — no exceptions.",
+        watch: "Reading the signal head and any posted restriction.",
+        focus: { x: 66, y: 20, label: "Signal + signs" },
+      },
+      {
+        say: "Pedestrians in your crosswalk own it. Two are stepping off the curb now, so you stay put.",
+        watch: "Yielding to pedestrians before easing forward.",
+        focus: { x: 26, y: 62, label: "Pedestrians" },
+      },
+      {
+        say: "Check left for cross traffic, then right for cyclists riding up beside you.",
+        watch: "A left-then-right scan, including the bike lane.",
+        focus: { x: 84, y: 55, label: "Cross traffic + bikes" },
+      },
+      {
+        say: "Clear? Turn into the nearest right lane, straighten, cancel the signal.",
+        watch: "Finishing in the closest legal lane.",
+        focus: { x: 74, y: 66, label: "Nearest lane" },
+      },
+    ],
+    faults: [
+      "Rolling through the red without stopping",
+      "Turning where a sign prohibits it",
+      "Cutting off a pedestrian or cyclist",
+      "Turning wide into the far lane",
+    ],
+    quiz: {
+      question: "In Alberta, when can you turn right on a red light?",
+      options: [
+        "Never",
+        "After a complete stop, if no sign prohibits it and the way is clear",
+        "Only between 9 a.m. and 5 p.m.",
+        "Any time, without stopping, if the road looks clear",
+      ],
+      answer: 1,
+      why: "It is legal after a complete stop unless a sign says otherwise, and only once pedestrians and traffic are clear.",
+    },
+  },
+  {
+    slug: "crosswalks",
+    title: "Marked crosswalks",
+    subtitle: "Stopping distance, and why you never pass a stopped car",
+    topic: "Pedestrians",
+    tier: "free",
+    minutes: 5,
+    image: crosswalk,
+    rule: "You must yield to pedestrians in a crosswalk and stop far enough back that drivers behind you can see them. Never pass a vehicle stopped at a crosswalk.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — pedestrian crossings",
+    steps: [
+      {
+        say: "Scan the sidewalks on both sides as you approach. People at the curb are about to become people on the road.",
+        watch: "Eyes moving to both curbs, speed already easing.",
+        focus: { x: 20, y: 50, label: "Curb both sides" },
+      },
+      {
+        say: "Someone with a stroller has stepped in. Stop well back — not right at their feet.",
+        watch: "A stop with a clear buffer before the crossing.",
+        focus: { x: 50, y: 62, label: "Pedestrian in crosswalk" },
+      },
+      {
+        say: "Wait until they're fully across and on the far curb, not just past your lane.",
+        watch: "Waiting for a complete crossing.",
+        focus: { x: 72, y: 60, label: "Far curb" },
+      },
+      {
+        say: "Never pass a vehicle stopped at a crosswalk — it is hiding someone from you.",
+        watch: "No overtaking near a crossing.",
+        focus: { x: 12, y: 52, label: "Stopped vehicle" },
+      },
+      {
+        say: "Move off gently and re-check the crossing before you clear it.",
+        watch: "A final look before accelerating away.",
+        focus: { x: 50, y: 70, label: "Crossing clear" },
+      },
+    ],
+    faults: [
+      "Stopping on the crosswalk lines",
+      "Moving off while a pedestrian is still crossing",
+      "Passing a stopped vehicle at a crossing",
+      "Waving pedestrians across into another lane's traffic",
+    ],
+    quiz: {
+      question: "A car in the lane beside you is stopped at a marked crosswalk. What do you do?",
+      options: [
+        "Pass carefully",
+        "Stop as well — it may be yielding to someone you cannot see",
+        "Sound your horn",
+        "Change lanes and continue",
+      ],
+      answer: 1,
+      why: "Never pass a vehicle stopped at a crosswalk. It is almost always hiding a pedestrian from your view.",
+    },
+  },
+  {
+    slug: "school-bus",
+    title: "Stopped school buses",
+    subtitle: "Red lights flashing means stop — both directions",
+    topic: "Pedestrians",
+    tier: "free",
+    minutes: 4,
+    image: schoolBus,
+    rule: "When a school bus has its upper red lights flashing, you must stop at least 20 metres away, from both directions, unless you are on the far side of a divided highway with a median.",
+    ruleSource: "Alberta Traffic Safety Act — school bus stopping requirements",
+    steps: [
+      {
+        say: "Amber lights mean it's about to stop. Start slowing then — don't try to beat it.",
+        watch: "Early reaction to the amber warning lights.",
+        focus: { x: 50, y: 24, label: "Amber lights" },
+      },
+      {
+        say: "Red lights and the stop arm are out. Stop at least 20 metres back — about five car lengths.",
+        watch: "A stop well back, not right at the bumper.",
+        focus: { x: 52, y: 34, label: "Red lights + stop arm" },
+      },
+      {
+        say: "Oncoming traffic stops too, unless there's a median dividing the highway.",
+        watch: "Knowing both directions must stop on an undivided road.",
+        focus: { x: 84, y: 52, label: "Oncoming lane" },
+      },
+      {
+        say: "Watch for children crossing in front of the bus — they appear from nowhere and don't look.",
+        watch: "Active watch for children on both sides of the bus.",
+        focus: { x: 26, y: 62, label: "Children crossing" },
+      },
+      {
+        say: "Wait for the lights to stop flashing and the arm to fold in before you move.",
+        watch: "Staying stopped until the signals are fully off.",
+        focus: { x: 50, y: 44, label: "Signals off" },
+      },
+    ],
+    faults: [
+      "Passing a bus with red lights flashing",
+      "Stopping closer than 20 metres",
+      "Moving before the stop arm folds in",
+      "Not watching for children crossing ahead of the bus",
+    ],
+    quiz: {
+      question: "A school bus ahead has its upper red lights flashing on an undivided road. What must you do?",
+      options: [
+        "Slow to 30 km/h and pass",
+        "Stop at least 20 metres away and wait",
+        "Stop only if you are behind the bus",
+        "Pass on the left if the lane is clear",
+      ],
+      answer: 1,
+      why: "Both directions stop at least 20 metres back until the red lights stop flashing and the stop arm is in.",
+    },
+  },
+  {
+    slug: "uncontrolled-intersections",
+    title: "Uncontrolled intersections",
+    subtitle: "No signs, no lights, all judgement",
+    topic: "Intersections",
+    tier: "free",
+    minutes: 5,
+    image: uncontrolled,
+    rule: "At an intersection with no signs or signals, yield to any vehicle that arrives before you, and to the vehicle on your right when you arrive together. Approach at a speed that lets you stop.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — right of way",
+    steps: [
+      {
+        say: "Residential intersections with no signs are common in Alberta. Treat every one as a yield.",
+        watch: "Speed reduced on approach, foot covering the brake.",
+        focus: { x: 50, y: 52, label: "Intersection ahead" },
+      },
+      {
+        say: "Look through the corner gaps — parked cars and hedges hide approaching vehicles.",
+        watch: "Looking early, before the corner blocks your view.",
+        focus: { x: 22, y: 50, label: "Blocked sightline" },
+      },
+      {
+        say: "That car on your right arrives with you, so it goes first. Right hand rule.",
+        watch: "Yielding to the vehicle on your right.",
+        focus: { x: 78, y: 58, label: "Vehicle on right" },
+      },
+      {
+        say: "Never assume the other driver knows the rule. Wait for them to actually commit.",
+        watch: "Confirming the other driver's movement before you go.",
+        focus: { x: 64, y: 60, label: "Other driver" },
+      },
+      {
+        say: "Then cross steadily, still scanning both ways as you go through.",
+        watch: "Continuous scanning while crossing.",
+        focus: { x: 50, y: 64, label: "Your path" },
+      },
+    ],
+    faults: [
+      "Entering at unchanged speed",
+      "Failing to yield to the vehicle on the right",
+      "No scan left and right before crossing",
+      "Assuming the other driver will yield",
+    ],
+    quiz: {
+      question: "Two cars reach an uncontrolled intersection at the same time. Who has the right of way?",
+      options: [
+        "The car on the left",
+        "The car on the right",
+        "The faster car",
+        "The car going straight, always",
+      ],
+      answer: 1,
+      why: "The vehicle on the right goes first. Approach slowly enough to stop, and never assume the other driver knows the rule.",
+    },
+  },
+  {
+    slug: "three-point-turn",
+    title: "The three-point turn",
+    subtitle: "Turning around in a narrow street without panic",
+    topic: "Manoeuvres",
+    tier: "free",
+    minutes: 6,
+    image: threePoint,
+    rule: "A three-point turn is only legal where you have clear sightlines both ways and no sign prohibits it. Signal, check traffic and pedestrians before every direction change.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — turning around",
+    steps: [
+      {
+        say: "Pick your spot: no hills, no curves, no driveways, and clear views both directions.",
+        watch: "Choosing a legal, safe location before starting.",
+        focus: { x: 50, y: 44, label: "Sightlines" },
+      },
+      {
+        say: "Signal right, pull to the right edge, then check both ways and behind you.",
+        watch: "Signal and a full traffic check before moving.",
+        focus: { x: 76, y: 52, label: "Right edge" },
+      },
+      {
+        say: "Signal left, then turn hard left and cross slowly to the far curb — slow hands off the gas.",
+        watch: "Low speed with full steering lock.",
+        focus: { x: 26, y: 56, label: "Far curb" },
+      },
+      {
+        say: "Stop short of the curb, shift to reverse, full right lock, and back up while looking over your shoulder.",
+        watch: "Looking back over the shoulder while reversing, not at the mirror only.",
+        focus: { x: 62, y: 64, label: "Reverse arc" },
+      },
+      {
+        say: "When you have room, shift to drive, straighten out, and pull away in your new lane.",
+        watch: "Finishing in the correct lane without touching a curb.",
+        focus: { x: 50, y: 60, label: "New direction" },
+      },
+    ],
+    faults: [
+      "Attempting it on a hill, curve or busy street",
+      "Touching the curb",
+      "No traffic check before each direction change",
+      "Reversing while looking only in the mirror",
+    ],
+    quiz: {
+      question: "Where is a three-point turn appropriate?",
+      options: [
+        "On any street when traffic is light",
+        "On a quiet, level street with clear views in both directions",
+        "Just past the crest of a hill",
+        "On a curve, since traffic slows there",
+      ],
+      answer: 1,
+      why: "You need clear sightlines both ways, level ground and no prohibiting sign. Hills and curves hide approaching traffic.",
+    },
+  },
+  {
+    slug: "following-distance",
+    title: "Following distance in traffic",
+    subtitle: "The two-second rule and rush-hour discipline",
+    topic: "City driving",
+    tier: "free",
+    minutes: 5,
+    image: following,
+    rule: "Keep at least a two-second gap to the vehicle ahead in good conditions, and more in rain, snow or when following large vehicles.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — following distance",
+    steps: [
+      {
+        say: "Pick a fixed point the car ahead passes, then count. Under two seconds and you're too close.",
+        watch: "A gap the examiner can visibly see.",
+        focus: { x: 50, y: 52, label: "Vehicle ahead" },
+      },
+      {
+        say: "In stop-and-go traffic, leave enough room to see the rear tyres of the car ahead touch the road.",
+        watch: "Gap kept even at crawling speed.",
+        focus: { x: 46, y: 66, label: "Gap" },
+      },
+      {
+        say: "Behind a truck or bus, double it. You can't see past them, so you need time instead.",
+        watch: "Extra space behind large vehicles.",
+        focus: { x: 62, y: 44, label: "Large vehicle" },
+      },
+      {
+        say: "If someone tailgates you, don't brake at them — open more space in front instead.",
+        watch: "Managing a tailgater by making space, not punishing them.",
+        focus: { x: 26, y: 40, label: "Behind you" },
+      },
+      {
+        say: "Look 12 to 15 seconds ahead — over the roofs, not at the bumper in front.",
+        watch: "Eyes lifted well down the road.",
+        focus: { x: 50, y: 36, label: "Far ahead" },
+      },
+    ],
+    faults: [
+      "Following closer than two seconds",
+      "Staring at the bumper ahead instead of far down the road",
+      "Braking hard because you saw the problem late",
+      "Closing the gap when someone merges in",
+    ],
+    quiz: {
+      question: "What is the minimum following distance in good conditions?",
+      options: ["One car length", "Two seconds", "Half a second", "Ten metres at any speed"],
+      answer: 1,
+      why: "Two seconds in good conditions, measured in time not car lengths, and more in poor weather or behind big vehicles.",
+    },
+  },
+  {
+    slug: "night-driving",
+    title: "Driving at night",
+    subtitle: "Headlights, glare, and overdriving your lights",
+    topic: "Conditions",
+    tier: "premium",
+    minutes: 6,
+    image: nightDrive,
+    rule: "Headlights must be on from half an hour after sunset to half an hour before sunrise, and whenever visibility is poor. Dim high beams within 300 metres of an oncoming vehicle and 150 metres when following.",
+    ruleSource: "Alberta Traffic Safety Act — lighting requirements",
+    steps: [
+      {
+        say: "Low beams on, dash lights dimmed, windshield clean inside and out. Glare starts on your own glass.",
+        watch: "Correct lights on before you move.",
+        focus: { x: 50, y: 86, label: "Headlights on" },
+      },
+      {
+        say: "Slow down. If you can't stop within the distance your lights show, you're driving too fast.",
+        watch: "Speed matched to how far you can actually see.",
+        focus: { x: 50, y: 56, label: "Lit distance" },
+      },
+      {
+        say: "Oncoming headlights: look to the right edge of your lane, not into the glare.",
+        watch: "Eyes off the oncoming lights.",
+        focus: { x: 22, y: 50, label: "Right edge line" },
+      },
+      {
+        say: "Wet asphalt swallows lane markings. Use the curb and the car ahead's lights as reference.",
+        watch: "Lane position held on poorly marked wet roads.",
+        focus: { x: 66, y: 66, label: "Wet lane markings" },
+      },
+      {
+        say: "Pedestrians in dark clothing appear late. Scan the shoulders and crossings deliberately.",
+        watch: "Deliberate scanning of shoulders and crossings.",
+        focus: { x: 84, y: 58, label: "Shoulder + crossing" },
+      },
+    ],
+    faults: [
+      "Driving faster than your lights let you stop",
+      "High beams left on into oncoming traffic",
+      "Staring into oncoming headlights",
+      "Missing pedestrians at unlit crossings",
+    ],
+    quiz: {
+      question: "How close to an oncoming vehicle must you dim your high beams in Alberta?",
+      options: ["50 metres", "150 metres", "300 metres", "Only if they flash you"],
+      answer: 2,
+      why: "Within 300 metres of an oncoming vehicle, and within 150 metres when following another vehicle.",
+    },
+  },
+  {
+    slug: "gravel-roads",
+    title: "Gravel and rural roads",
+    subtitle: "Loose surfaces, dust clouds and hidden approaches",
+    topic: "Rural driving",
+    tier: "premium",
+    minutes: 6,
+    image: gravel,
+    rule: "Reduce speed on gravel: traction and stopping distance are much worse than on pavement. Slow right down in dust and be ready for uncontrolled rural intersections.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — rural and gravel roads",
+    steps: [
+      {
+        say: "Gravel steals grip. Drop well below the posted limit before you meet a corner, not in it.",
+        watch: "Speed reduced for the surface.",
+        focus: { x: 50, y: 66, label: "Loose surface" },
+      },
+      {
+        say: "Steer and brake gently. Sharp inputs on gravel start slides you can't feel coming.",
+        watch: "Smooth, minimal steering and braking.",
+        focus: { x: 40, y: 74, label: "Wheel tracks" },
+      },
+      {
+        say: "That oncoming truck's dust cloud will blind you. Slow down and move right before it reaches you.",
+        watch: "Slowing for the dust instead of driving into it.",
+        focus: { x: 52, y: 46, label: "Dust cloud" },
+      },
+      {
+        say: "Rural crossroads often have no signs and crops block the view. Treat each as a yield.",
+        watch: "Slowing for every rural intersection.",
+        focus: { x: 80, y: 50, label: "Hidden approach" },
+      },
+      {
+        say: "Watch for deer, farm equipment and soft shoulders — the edge can grab a wheel.",
+        watch: "Hazard awareness and staying off the soft edge.",
+        focus: { x: 16, y: 62, label: "Soft shoulder" },
+      },
+    ],
+    faults: [
+      "Driving the posted limit on loose gravel",
+      "Driving straight into a dust cloud",
+      "Not slowing for uncontrolled rural crossroads",
+      "Dropping a wheel onto the soft shoulder",
+    ],
+    quiz: {
+      question: "An oncoming truck on a gravel road is throwing up a thick dust cloud. What do you do?",
+      options: [
+        "Speed up to get through it faster",
+        "Slow down, keep right, and be ready to stop",
+        "Turn on high beams and hold your speed",
+        "Move to the centre of the road",
+      ],
+      answer: 1,
+      why: "Dust can blind you completely. Slow down, keep right, use low beams, and be prepared to stop.",
+    },
+  },
+  {
+    slug: "driveway-backing",
+    title: "Backing out of a driveway",
+    subtitle: "The everyday manoeuvre that hits the most people",
+    topic: "Manoeuvres",
+    tier: "premium",
+    minutes: 4,
+    image: driveway,
+    rule: "You must yield to all traffic and pedestrians when backing out of a driveway onto a roadway. Reverse only when the whole path is clear.",
+    ruleSource: "Alberta Basic Licence Driver's Handbook — reversing onto a roadway",
+    steps: [
+      {
+        say: "Walk the path or check behind before you get in. Kids and toys live behind bumpers.",
+        watch: "Confirming the area behind is clear before starting.",
+        focus: { x: 60, y: 70, label: "Behind the car" },
+      },
+      {
+        say: "Reverse at walking pace with your head turned, using mirrors and camera as extras only.",
+        watch: "Head turned over the shoulder, very low speed.",
+        focus: { x: 40, y: 46, label: "Over your shoulder" },
+      },
+      {
+        say: "Stop at the sidewalk line. Cyclists and pedestrians on the walk have priority.",
+        watch: "A pause at the sidewalk before crossing it.",
+        focus: { x: 72, y: 52, label: "Sidewalk" },
+      },
+      {
+        say: "Edge out only far enough to see past the parked cars, then re-check both directions.",
+        watch: "Creeping and re-checking instead of one long reverse.",
+        focus: { x: 20, y: 55, label: "Parked cars" },
+      },
+      {
+        say: "Back into the nearest lane, straighten, then pull away in the correct direction.",
+        watch: "Finishing in the right lane facing the right way.",
+        focus: { x: 50, y: 62, label: "Nearest lane" },
+      },
+    ],
+    faults: [
+      "Reversing without checking behind first",
+      "Crossing the sidewalk without stopping",
+      "Reversing right across into the far lane",
+      "Relying on the backup camera only",
+    ],
+    quiz: {
+      question: "You are backing out of a driveway onto a residential street. Who has the right of way?",
+      options: [
+        "You do, because you were there first",
+        "All road and sidewalk users — you must yield to everyone",
+        "Only pedestrians",
+        "Whoever is closest",
+      ],
+      answer: 1,
+      why: "A vehicle entering a roadway from a driveway yields to all traffic and to pedestrians and cyclists on the sidewalk.",
     },
   },
 ];
