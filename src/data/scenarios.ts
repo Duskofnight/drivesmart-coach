@@ -10,6 +10,16 @@ import construction from "@/assets/scenario-construction.jpg";
 import railway from "@/assets/scenario-railway.jpg";
 import emergency from "@/assets/scenario-emergency.jpg";
 import parkingLot from "@/assets/scenario-parking-lot.jpg";
+import laneChange from "@/assets/scenario-lane-change.jpg";
+import rightTurnRed from "@/assets/scenario-right-turn-red.jpg";
+import crosswalk from "@/assets/scenario-crosswalk.jpg";
+import schoolBus from "@/assets/scenario-school-bus.jpg";
+import uncontrolled from "@/assets/scenario-uncontrolled.jpg";
+import threePoint from "@/assets/scenario-three-point.jpg";
+import nightDrive from "@/assets/scenario-night.jpg";
+import gravel from "@/assets/scenario-gravel.jpg";
+import driveway from "@/assets/scenario-driveway.jpg";
+import following from "@/assets/scenario-following.jpg";
 import fourWayClip from "@/assets/clip-four-way-stop.mp4.asset.json";
 
 export type Tier = "free" | "premium";
@@ -263,7 +273,7 @@ export const scenarios: Scenario[] = [
     title: "Parallel parking",
     subtitle: "Reference points that work every time",
     topic: "Parking",
-    tier: "premium",
+    tier: "free",
     minutes: 9,
     image: parallelPark,
     rule: "Park within 50 cm of the curb, parallel to it, and leave room for the vehicles ahead and behind. Signal before stopping and shoulder check before every direction change.",
@@ -313,7 +323,7 @@ export const scenarios: Scenario[] = [
     title: "Merging onto the highway",
     subtitle: "Speed matching and the shoulder check that saves you",
     topic: "Highway driving",
-    tier: "premium",
+    tier: "free",
     minutes: 8,
     image: highwayMerge,
     rule: "Use the acceleration lane to reach the speed of traffic, signal, shoulder check your blind spot, and merge into a gap. Merging traffic yields to traffic already on the highway.",
@@ -418,7 +428,7 @@ export const scenarios: Scenario[] = [
     title: "Winter driving in Alberta",
     subtitle: "Space, smoothness, and reading black ice",
     topic: "Conditions",
-    tier: "premium",
+    tier: "free",
     minutes: 8,
     image: winter,
     rule: "You must drive at a speed that is safe for conditions, even if that is well below the posted limit. Clear all snow and ice off the vehicle before driving, and increase following distance on slippery roads.",
