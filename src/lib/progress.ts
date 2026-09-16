@@ -136,6 +136,17 @@ export function useProfile(userId: string | undefined) {
   return useQuery(profileQuery(userId));
 }
 
+export function useUpdateProfile(userId: string | undefined) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (patch: { display_name?: string; test_date?: string | null }) => {
+      const { error } = await supabase.from("profiles").update(patch).eq("id", userId!);
+      if (error) throw error;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["profile", userId] }),
+  });
+}
+
 export function useSetPlan(userId: string | undefined) {
   const qc = useQueryClient();
   return useMutation({
