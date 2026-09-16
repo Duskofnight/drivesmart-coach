@@ -150,7 +150,9 @@ function Dashboard() {
                 <Link to="/mock-test">Mock road test</Link>
               </Button>
               <Button variant="ghost" asChild>
-                <Link to="/coach">Ask the coach</Link>
+                <Link to="/coach" search={{ topic: undefined }}>
+                  Ask the coach
+                </Link>
               </Button>
             </div>
           </div>
